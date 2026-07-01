@@ -1,0 +1,171 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import CaseStudyPreview from "../components/CaseStudyPreview.astro";
+import Timeline from "../components/Timeline.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SkillsGrid from "../components/SkillsGrid.astro";
+
+const caseStudies = (await getCollection("caseStudies")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const olderRoles = [
+  {
+    timeframe: "2016 – 2017",
+    role: "Full-Stack Developer",
+    organization: "Office Micro",
+    summary:
+      "Django REST backend and Angular 2 frontend for a city-hall resident mapping service.",
+  },
+  {
+    timeframe: "2015",
+    role: "Backend Developer (Intern)",
+    organization: "Class-Web",
+    summary: "Maintained a Symfony e-commerce app and integrated Stripe.",
+  },
+  {
+    timeframe: "2014 – 2015",
+    role: "Software Developer",
+    organization: "Office Micro",
+    summary:
+      "Windows script management app in C# / WPF with AutoIT under the hood.",
+  },
+];
+
+const personalProjects = [
+  {
+    title: "Astro Mind",
+    description:
+      "A Retrieval-Augmented Generation assistant for Elite Dangerous. Python, Qdrant, and OpenAI's SDK, built modular so new knowledge sources plug in without rewriting the retrieval layer.",
+    tags: ["Python", "RAG", "LLMs", "Qdrant"],
+    links: [
+      {
+        label: "View code",
+        href: "https://github.com/Jonathan-Racaud/Astro-Mind",
+      },
+      {
+        label: "Try it",
+        href: "https://ed-astro-mind.streamlit.app",
+        variant: "primary" as const,
+      },
+    ],
+  },
+  {
+    title: "Blog LLM Assistant",
+    description:
+      "A writing companion for articles — generates titles, descriptions, visuals, and structured feedback with the LLM of your choice.",
+    tags: ["Python", "LLMs", "Prompt design"],
+    links: [
+      {
+        label: "View repo",
+        href: "https://github.com/Jonathan-Racaud/Blog-LLM-Assistant",
+      },
+    ],
+  },
+];
+
+const skillGroups = [
+  {
+    heading: "Languages",
+    items: ["Swift", "C++", "C", "C#", "Python", "TypeScript"],
+  },
+  {
+    heading: "Platforms",
+    items: [
+      "iOS / SwiftUI",
+      "Embedded (Arduino, ESP32)",
+      "Qt / QML",
+      ".NET / ASP.NET Core",
+      "Django",
+      "NixOS",
+    ],
+  },
+  {
+    heading: "Domains",
+    items: [
+      "SDK design",
+      "C / C++ ↔ Swift integration",
+      "Applied LLMs & RAG",
+      "Location & mapping",
+      "Cross-platform UI",
+      "Self-hosted infrastructure",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Jonathan Racaud — Software Engineer"
+  description="Full-stack software engineer. Embedded systems, iOS SDK work, and applied LLMs."
+>
+  <Hero
+    name="Jonathan Racaud"
+    tagline="Software engineer — embedded, iOS SDK, and applied LLMs."
+  />
+
+  <About />
+
+  <section id="case-studies">
+    <p class="section-label">Case studies</p>
+    <div class="case-study-list">
+      {
+        caseStudies.map((entry) => (
+          <CaseStudyPreview
+            href={`/case-studies/${entry.id}`}
+            organization={entry.data.organization}
+            role={entry.data.role}
+            timeframe={entry.data.timeframe}
+            title={entry.data.title}
+            hook={entry.data.hook}
+          />
+        ))
+      }
+    </div>
+
+    <Timeline entries={olderRoles} />
+  </section>
+
+  <section id="projects">
+    <p class="section-label">Personal projects</p>
+    <div class="project-grid">
+      {
+        personalProjects.map((project) => (
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            tags={project.tags}
+            links={project.links}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="section-label">What I work with</p>
+    <SkillsGrid groups={skillGroups} />
+  </section>
+</BaseLayout>
+
+<style>
+  .case-study-list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .project-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

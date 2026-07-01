@@ -1,0 +1,65 @@
+---
+interface Group {
+  heading: string;
+  items: string[];
+}
+
+interface Props {
+  groups: Group[];
+}
+
+const { groups } = Astro.props;
+---
+
+<div class="skills-grid">
+  {
+    groups.map((group) => (
+      <div class="skills-group">
+        <h3 class="skills-heading">{group.heading}</h3>
+        <ul>
+          {group.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .skills-heading {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 12px;
+  }
+
+  .skills-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skills-group li {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 3px 0;
+    color: var(--ink);
+  }
+
+  @media (max-width: 720px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+</style>

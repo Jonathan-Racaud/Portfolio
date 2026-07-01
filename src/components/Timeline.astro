@@ -1,0 +1,95 @@
+---
+interface Entry {
+  timeframe: string;
+  role: string;
+  organization: string;
+  summary: string;
+}
+
+interface Props {
+  entries: Entry[];
+}
+
+const { entries } = Astro.props;
+---
+
+<div class="timeline">
+  <ol>
+    {
+      entries.map((entry) => (
+        <li>
+          <span class="tl-time">{entry.timeframe}</span>
+          <span class="tl-role">{entry.role}</span>
+          <span class="tl-org">{entry.organization}</span>
+          <span class="tl-summary">— {entry.summary}</span>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .timeline {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .timeline ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .timeline li {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 8px 0;
+    color: var(--ink-soft);
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 4px 16px;
+    align-items: baseline;
+  }
+
+  .tl-time {
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.88rem;
+  }
+
+  .tl-role {
+    grid-column: 2;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .tl-org {
+    grid-column: 2;
+    color: var(--ink-soft);
+  }
+
+  .tl-org::before {
+    content: "at ";
+    color: var(--ink-faint);
+  }
+
+  .tl-summary {
+    grid-column: 2;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 640px) {
+    .timeline li {
+      grid-template-columns: 1fr;
+      gap: 2px;
+      padding: 10px 0;
+    }
+
+    .tl-role,
+    .tl-org,
+    .tl-summary {
+      grid-column: 1;
+    }
+  }
+</style>

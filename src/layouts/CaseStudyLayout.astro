@@ -1,0 +1,67 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Pill from "../components/Pill.astro";
+
+interface Props {
+  title: string;
+  organization: string;
+  role: string;
+  timeframe: string;
+  hook: string;
+  stack: string[];
+  repoUrl?: string;
+  repoLabel?: string;
+  repoNote?: string;
+}
+
+const {
+  title,
+  organization,
+  role,
+  timeframe,
+  hook,
+  stack,
+  repoUrl,
+  repoLabel,
+  repoNote,
+} = Astro.props;
+---
+
+<BaseLayout title={`${organization} — ${title}`} description={hook}>
+  <div class="prose">
+    <div class="case-study-back">
+      <a href="/#case-studies">&larr; All case studies</a>
+    </div>
+
+    <header class="case-study-header">
+      <h1>{title}</h1>
+      <p class="meta">
+        {organization} &middot; {role} &middot; {timeframe}
+      </p>
+    </header>
+
+    <article class="case-study-body">
+      <slot />
+
+      <h2>Stack</h2>
+      <ul class="pill-list" style="margin-bottom: 1.6em;">
+        {stack.map((item) => <Pill label={item} />)}
+      </ul>
+
+      {(repoUrl || repoNote) && (
+        <>
+          <h2>Links</h2>
+          {repoUrl && (
+            <p>
+              <a href={repoUrl} target="_blank" rel="noopener">
+                {repoLabel ?? repoUrl}
+              </a>
+            </p>
+          )}
+          {repoNote && !repoUrl && <p>{repoNote}</p>}
+          {repoNote && repoUrl && <p style="color: var(--ink-soft); font-size: 0.95em;">{repoNote}</p>}
+        </>
+      )}
+    </article>
+  </div>
+</BaseLayout>

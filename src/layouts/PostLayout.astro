@@ -1,0 +1,36 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  publishedAt: Date;
+}
+
+const { title, description, publishedAt } = Astro.props;
+
+const formattedDate = publishedAt.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="prose">
+    <div class="case-study-back">
+      <a href="/blog">&larr; All notes</a>
+    </div>
+
+    <header class="case-study-header">
+      <h1>{title}</h1>
+      <p class="meta">
+        <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
+      </p>
+    </header>
+
+    <article class="case-study-body">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>

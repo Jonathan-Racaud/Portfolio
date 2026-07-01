@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+if ! command -v bun >/dev/null 2>&1; then
+  echo "pre-push: bun not found on PATH — skipping build." >&2
+  exit 0
+fi
+
+echo "pre-push: building the site to catch failures locally…"
+bun run build

@@ -1,51 +1,82 @@
-# Terminal-Style Portfolio
+# Portfolio
 
-A minimalist, terminal-inspired portfolio website showcasing programming projects and skills.
+Personal portfolio at [portfolio.jracaud.com](https://portfolio.jracaud.com).
 
-## Features
+Built with [Astro](https://astro.build) as a static site, deployed to GitHub Pages via GitHub Actions.
 
-- Terminal aesthetic with green text on black background
-- Responsive design that works on all devices
-- Project showcase with embedded project viewer
-- No external dependencies - pure HTML, CSS, and JavaScript
-- Easy to maintain and update
+## Setup
 
-## Hosting on GitHub Pages
+### 1. Install Bun
 
-1. Create a new repository on GitHub (or use an existing one)
-2. Push this code to the repository
-3. Go to the repository settings
-4. Scroll down to the "Pages" section
-5. Under "Source", select "Deploy from a branch"
-6. Choose the branch (usually main or master) and click Save
-7. Your site will be available at `https://[username].github.io/[repository-name]/`
+```sh
+# macOS / Linux / WSL
+curl -fsSL https://bun.sh/install | bash
 
-## Customization
+# Windows PowerShell
+powershell -c "irm bun.sh/install.ps1 | iex"
+```
 
-To personalize this portfolio:
+### 2. Install dependencies
 
-1. Edit `index.html`:
-   - Replace "Your Name" with your actual name
-   - Update the about section with your personal description
-   - Modify the project cards with your actual projects, descriptions, and links
+```sh
+bun install
+```
 
-2. Edit `styles.css` if you want to adjust:
-   - Colors (modify the CSS variables in :root)
-   - Spacing or layout
-   - Typography
+### 3. Run locally
 
-## Project Structure
+```sh
+bun run dev        # dev server at http://localhost:4321
+bun run build      # produces dist/
+bun run preview    # serve dist/ locally
+bun run check      # type-check content collections and Astro files
+```
 
-- `index.html` - Main page structure
-- `styles.css` - Terminal-style styling
-- `README.md` - This file
+### 4. Activate git hooks (one-time per clone)
 
-## Usage
+```sh
+git config core.hooksPath .githooks
+```
 
-The portfolio features a terminal-like interface with:
-- Command prompt styling for section headers
-- Project cards with repository links
-- "Try Me" buttons for hosted projects that open in an embedded viewer
-- Responsive design for mobile and desktop
+That points git at the committed hooks under `.githooks/`. From then on:
 
-To add your projects, simply duplicate the project card structure in the HTML and update with your project details.
+- `pre-commit` runs `astro check` — catches content-collection schema errors before they land.
+- `pre-push` runs `bun run build` — catches build failures locally instead of in CI.
+
+Both hooks no-op cleanly if `bun` isn't on the PATH.
+
+### 5. Enable GitHub Pages via Actions (one-time, on GitHub)
+
+- Repo → **Settings → Pages**.
+- **Build and deployment → Source**: pick **GitHub Actions** (not "Deploy from a branch").
+- **Custom domain** should show `portfolio.jracaud.com`. The `CNAME` file lives in [`public/CNAME`](public/CNAME) so it's copied into every build's `dist/`.
+
+## Deploying
+
+Push to `main`. The workflow at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on every push (and can be triggered manually via **Actions → Deploy to GitHub Pages → Run workflow**). First run takes ~1–2 minutes.
+
+## Adding content
+
+**New case study**: drop a markdown file into [`src/content/case-studies/`](src/content/case-studies/). Front-matter schema is in [`src/content.config.ts`](src/content.config.ts). Push to `main` — it deploys automatically.
+
+**New blog post**: same, under [`src/content/blog/`](src/content/blog/). Set `draft: true` in the front-matter to hide from the index and detail routes.
+
+**New page**: add an `.astro` file under [`src/pages/`](src/pages/).
+
+## Project structure
+
+```
+astro.config.mjs           # Astro config (site URL, static output)
+public/
+  CNAME                    # custom domain — copied verbatim into dist/
+src/
+  content.config.ts        # collections: caseStudies, blog
+  content/
+    case-studies/          # one .md per case study
+    blog/                  # one .md per post
+  layouts/                 # BaseLayout, CaseStudyLayout, PostLayout
+  components/              # Hero, About, CaseStudyPreview, Timeline, …
+  pages/                   # index.astro, case-studies/[…slug], blog/…
+  styles/global.css        # palette, typography, layout primitives
+.githooks/                 # pre-commit, pre-push
+.github/workflows/         # deploy.yml → GitHub Pages
+```

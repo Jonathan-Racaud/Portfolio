@@ -1,0 +1,98 @@
+---
+interface Props {
+  href: string;
+  organization: string;
+  role: string;
+  timeframe: string;
+  title: string;
+  hook: string;
+}
+
+const { href, organization, role, timeframe, title, hook } = Astro.props;
+---
+
+<a class="case-study-card" href={href}>
+  <div class="cs-meta">
+    <span class="cs-org">{organization}</span>
+    <span class="cs-role">{role}</span>
+    <span class="cs-timeframe">{timeframe}</span>
+  </div>
+  <h3 class="cs-title">{title}</h3>
+  <p class="cs-hook">{hook}</p>
+  <span class="cs-read">Read case study &rarr;</span>
+</a>
+
+<style>
+  .case-study-card {
+    display: block;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 24px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: transparent;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .case-study-card:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .case-study-card:hover .cs-read {
+    color: var(--ink);
+  }
+
+  .cs-meta {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    margin-bottom: 12px;
+  }
+
+  .cs-org {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .cs-role::before,
+  .cs-timeframe::before {
+    content: "·";
+    margin-right: 12px;
+    color: var(--ink-faint);
+  }
+
+  .cs-title {
+    font-family: var(--font-sans);
+    font-size: 1.08rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .cs-hook {
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .cs-read {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    transition: color 0.15s ease;
+  }
+
+  @media (max-width: 640px) {
+    .cs-meta {
+      gap: 4px 10px;
+    }
+
+    .cs-role::before,
+    .cs-timeframe::before {
+      margin-right: 10px;
+    }
+  }
+</style>

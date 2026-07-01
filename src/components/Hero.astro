@@ -1,0 +1,40 @@
+---
+interface Props {
+  name: string;
+  tagline: string;
+  intro?: string;
+}
+
+const { name, tagline, intro } = Astro.props;
+---
+
+<section class="hero">
+  <h1>{name}</h1>
+  <p class="hero-tagline">{tagline}</p>
+  {intro && <p class="hero-intro">{intro}</p>}
+</section>
+
+<style>
+  .hero {
+    max-width: var(--measure-prose);
+  }
+
+  .hero-tagline {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  .hero-intro {
+    font-size: 1.05rem;
+    max-width: 560px;
+  }
+
+  @media (max-width: 640px) {
+    .hero-tagline {
+      font-size: 1rem;
+    }
+  }
+</style>
