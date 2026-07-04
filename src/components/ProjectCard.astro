@@ -18,26 +18,30 @@ const { title, description, links, tags = [] } = Astro.props;
 ---
 
 <article class="project-card">
-  <h3 class="project-title">{title}</h3>
-  <p class="project-description">{description}</p>
-  {
-    tags.length > 0 && (
-      <ul class="pill-list project-tags">
-        {tags.map((tag) => (
-          <li class="pill">{tag}</li>
-        ))}
-      </ul>
-    )
-  }
-  <div class="project-links">
-    {
-      links.map((link) => (
-        <Button href={link.href} variant={link.variant ?? "secondary"} external>
-          {link.label}
-        </Button>
-      ))
-    }
-  </div>
+    <section>
+        <h3 class="project-title">{title}</h3>
+        <p class="project-description">{description}</p>
+    </section>
+    <div class="project-metadata">
+        {
+          tags.length > 0 && (
+            <ul class="pill-list project-tags">
+              {tags.map((tag) => (
+                <li class="pill">{tag}</li>
+              ))}
+            </ul>
+          )
+        }
+        <div class="project-links">
+            {
+              links.map((link) => (
+                  <Button href={link.href} variant={link.variant ?? "secondary"} external>
+                      {link.label}
+                  </Button>
+              ))
+            }
+        </div>
+    </div>
 </article>
 
 <style>
@@ -48,12 +52,13 @@ const { title, description, links, tags = [] } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    justify-content: space-between;
   }
 
   .project-title {
     font-family: var(--font-sans);
     font-size: 1.08rem;
-    margin: 0;
+    margin-bottom: 10px;
   }
 
   .project-description {
@@ -66,10 +71,17 @@ const { title, description, links, tags = [] } = Astro.props;
     margin-top: 0;
   }
 
-  .project-links {
+  .project-metadata {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     flex-wrap: wrap;
     margin-top: 4px;
+  }
+
+  .project-links {
+      display: flex;
+      gap: 5px;
+      justify-content: space-between;
   }
 </style>

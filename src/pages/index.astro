@@ -12,56 +12,47 @@ const caseStudies = (await getCollection("caseStudies")).sort(
   (a, b) => a.data.order - b.data.order,
 );
 
-const olderRoles = [
-  {
-    timeframe: "2016 – 2017",
-    role: "Full-Stack Developer",
-    organization: "Office Micro",
-    summary:
-      "Django REST backend and Angular 2 frontend for a city-hall resident mapping service.",
-  },
-  {
-    timeframe: "2015",
-    role: "Backend Developer (Intern)",
-    organization: "Class-Web",
-    summary: "Maintained a Symfony e-commerce app and integrated Stripe.",
-  },
-  {
-    timeframe: "2014 – 2015",
-    role: "Software Developer",
-    organization: "Office Micro",
-    summary:
-      "Windows script management app in C# / WPF with AutoIT under the hood.",
-  },
-];
-
 const personalProjects = [
   {
-    title: "Astro Mind",
+    title: "Mirror",
     description:
-      "A Retrieval-Augmented Generation assistant for Elite Dangerous. Python, Qdrant, and OpenAI's SDK, built modular so new knowledge sources plug in without rewriting the retrieval layer.",
-    tags: ["Python", "RAG", "LLMs", "Qdrant"],
+      "Mirror interviews you with AI, finds patterns you missed, and produces a private insight document and a polished public profile. Nothing leaves your device except the requests you send to your own AI provider.",
+    tags: ["Typescript", "Vue.js", "LLMs", "OpenAI SDK"],
     links: [
       {
-        label: "View code",
-        href: "https://github.com/Jonathan-Racaud/Astro-Mind",
+        label: "View Code",
+        href: "https://github.com/nc-750/Applications/tree/main/Mirror/App",
       },
       {
         label: "Try it",
-        href: "https://ed-astro-mind.streamlit.app",
+        href: "https://mirror.nc-750.com",
         variant: "primary" as const,
       },
     ],
   },
   {
-    title: "Blog LLM Assistant",
+    title: "Monthly Expenses",
     description:
-      "A writing companion for articles — generates titles, descriptions, visuals, and structured feedback with the LLM of your choice.",
-    tags: ["Python", "LLMs", "Prompt design"],
+      "A simple application that helps you track your monthly expenses and incomes.",
+    tags: ["Flutter", "Dart"],
     links: [
       {
         label: "View repo",
-        href: "https://github.com/Jonathan-Racaud/Blog-LLM-Assistant",
+        href: "https://github.com/Jonathan-Racaud/Monthly-Expenses",
+        variant: "primary" as const,
+      },
+    ],
+  },
+  {
+    title: "ijo",
+    description:
+      "A small programing language to explore what a keyword-free programming language could look like.",
+    tags: ["nim"],
+    links: [
+      {
+        label: "View repo",
+        href: "https://github.com/Jonathan-Racaud/ijo",
+        variant: "primary" as const,
       },
     ],
   },
@@ -69,7 +60,7 @@ const personalProjects = [
 
 const skillGroups = [
   {
-    heading: "Languages",
+    heading: "Programming Languages",
     items: ["Swift", "C++", "C", "C#", "Python", "TypeScript"],
   },
   {
@@ -77,20 +68,17 @@ const skillGroups = [
     items: [
       "iOS / SwiftUI",
       "Embedded (Arduino, ESP32)",
-      "Qt / QML",
       ".NET / ASP.NET Core",
-      "Django",
-      "NixOS",
+      "Linux / NixOS",
     ],
   },
   {
     heading: "Domains",
     items: [
       "SDK design",
-      "C / C++ ↔ Swift integration",
-      "Applied LLMs & RAG",
-      "Location & mapping",
-      "Cross-platform UI",
+      "Software design",
+      "Applied LLMs",
+      "Cross-platform development",
       "Self-hosted infrastructure",
     ],
   },
@@ -98,12 +86,12 @@ const skillGroups = [
 ---
 
 <BaseLayout
-  title="Jonathan Racaud — Software Engineer"
-  description="Full-stack software engineer. Embedded systems, iOS SDK work, and applied LLMs."
+  title="Jonathan Racaud - Software Engineer"
+  description="Software engineer - iOS, Web, Applied LLMs."
 >
   <Hero
     name="Jonathan Racaud"
-    tagline="Software engineer — embedded, iOS SDK, and applied LLMs."
+    tagline="Software engineer - iOS, Web, Applied LLMs"
   />
 
   <About />
@@ -124,8 +112,6 @@ const skillGroups = [
         ))
       }
     </div>
-
-    <Timeline entries={olderRoles} />
   </section>
 
   <section id="projects">
