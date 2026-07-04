@@ -279,6 +279,7 @@ section + section {
   flex-wrap: wrap;
   gap: 24px;
   align-items: baseline;
+  justify-content: space-between;
 }
 
 .site-footer .footer-links {
