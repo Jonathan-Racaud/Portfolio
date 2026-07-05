@@ -2,7 +2,7 @@
 title: "NC-750 and Mirror: A personal software that respects the person using it"
 organization: "NC-750"
 role: "Founder, Sole Engineer"
-timeframe: "2025 – ongoing"
+timeframe: "2026 – ongoing"
 order: 3
 hook: "A proposition to modern user facing software"
 stack:
