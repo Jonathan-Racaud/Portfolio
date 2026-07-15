@@ -6,6 +6,7 @@ import About from "../components/About.astro";
 import CaseStudyPreview from "../components/CaseStudyPreview.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SkillsGrid from "../components/SkillsGrid.astro";
+import Timeline from "../components/Timeline.astro";
 
 const caseStudies = (await getCollection("caseStudies")).sort(
   (a, b) => a.data.order - b.data.order,
@@ -15,8 +16,7 @@ const personalProjects = [
   {
     title: "Mirror",
     description:
-      "Mirror interviews you with AI, finds patterns you missed, and produces a private insight document and a polished public profile. Nothing leaves your device except the requests you send to your own AI provider.",
-    tags: ["Typescript", "Vue.js", "LLMs", "OpenAI SDK"],
+      "A desktop application that runs an LLM-driven interview on my career materials and produces a structured persona profile. I built a provider abstraction that lets users choose between hosted AI providers and local models — nothing leaves the device unless chosen.",
     links: [
       {
         label: "View repo",
@@ -32,8 +32,7 @@ const personalProjects = [
   {
     title: "Astro Mind",
     description:
-      "A friendly AI assistant for Elite Dangerous commanders, designed to help you explore and understand the capabilities of ships across the galaxy.",
-    tags: ["Python", "LLM", "RAG"],
+      "An exploration of Retrieval-Augmented Generation architecture: combining semantic search with LLM responses to answer natural-language questions from a curated knowledge base. Built with Python, OpenAI SDK, and Qdrant.",
     links: [
       {
         label: "View repo",
@@ -42,68 +41,82 @@ const personalProjects = [
       },
     ],
   },
-  {
-    title: "Monthly Expenses",
-    description:
-      "A simple application that helps you track your monthly expenses and incomes.",
-    tags: ["Flutter", "Dart"],
-    links: [
-      {
-        label: "View repo",
-        href: "https://github.com/Jonathan-Racaud/Monthly-Expenses",
-        variant: "primary" as const,
-      },
-    ],
-  },
-  {
-    title: "ijo",
-    description:
-      "A small programing language to explore what a keyword-free programming language could look like.",
-    tags: ["nim"],
-    links: [
-      {
-        label: "View repo",
-        href: "https://github.com/Jonathan-Racaud/ijo",
-        variant: "primary" as const,
-      },
-    ],
-  },
 ];
 
 const skillGroups = [
   {
-    heading: "Programming Languages",
+    heading: "Languages",
     items: ["Swift", "C++", "C", "C#", "Python", "TypeScript"],
   },
   {
-    heading: "Platforms",
+    heading: "Platforms & Domains",
     items: [
+      "SDK Design",
+      "Cross-platform Architecture",
       "iOS / SwiftUI",
-      "Embedded (Arduino, ESP32)",
+      "Embedded (Arduino)",
       ".NET / ASP.NET Core",
       "Linux / NixOS",
     ],
   },
   {
-    heading: "Domains",
+    heading: "AI Application Engineering",
     items: [
-      "SDK design",
-      "Software design",
-      "Applied LLMs",
-      "Cross-platform development",
-      "Self-hosted infrastructure",
+      "LLM Integration",
+      "RAG Pipelines",
+      "Provider Abstraction",
+      "Local-first AI Workflows",
     ],
+  },
+];
+
+const experienceEntries = [
+  {
+    organization: "Amaris Consulting",
+    role: "Experienced Consultant",
+    timeframe: "2020 – 2025",
+    summary: "Developed core components of a cross-platform automotive SDK and contributed to C#/.NET backend services for on-street parking data.",
+  },
+  {
+    organization: "NConcepts",
+    role: "Software Engineer",
+    timeframe: "2017 – 2019",
+    summary: "Built interactive systems combining embedded hardware, desktop applications, and cross-platform mobile interfaces.",
+  },
+  {
+    organization: "Office Micro",
+    role: "Full Stack Developer",
+    timeframe: "2016 – 2017",
+    summary: "Designed and developed a RESTful web service and frontend mapping application for city halls.",
+  },
+  {
+    organization: "Class-Web",
+    role: "PHP Backend Developer",
+    timeframe: "2015",
+    summary: "Maintained an e-commerce web application and prototyped payment integrations.",
+  },
+  {
+    organization: "Office Micro",
+    role: "Software Developer",
+    timeframe: "2014 – 2015",
+    summary: "Developed a Windows desktop application to manage and automate scripting workflows.",
+  },
+  {
+    organization: "Sopra Group",
+    role: "Software Engineer",
+    timeframe: "2013",
+    summary: "Researched and presented on integrating Java Ecore into embedded software workflows.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Jonathan Racaud - Software Engineer"
-  description="Software engineer - iOS, Web, Applied LLMs."
+  title="Jonathan Racaud - SDK / Platform Software Engineer"
+  description="SDK / Platform Software Engineer | Bridging Embedded Systems, Mobile Platforms & Backend Services | Exploring AI-powered Application"
 >
   <Hero
     name="Jonathan Racaud"
-    tagline="Software engineer - iOS, Web, Applied LLMs"
+    tagline="SDK / Platform Software Engineer | Bridging Embedded Systems, Mobile Platforms & Backend Services | Exploring AI-powered Application"
   />
 
   <About />
@@ -127,7 +140,7 @@ const skillGroups = [
   </section>
 
   <section id="projects">
-    <p class="section-label">Personal projects</p>
+    <p class="section-label">Selected Personal projects</p>
     <div class="project-grid">
       {
         personalProjects.map((project) => (
@@ -140,11 +153,6 @@ const skillGroups = [
         ))
       }
     </div>
-  </section>
-
-  <section id="skills">
-    <p class="section-label">What I work with</p>
-    <SkillsGrid groups={skillGroups} />
   </section>
 </BaseLayout>
 

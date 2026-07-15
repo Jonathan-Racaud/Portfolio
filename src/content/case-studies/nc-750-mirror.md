@@ -4,7 +4,7 @@ organization: "NC-750"
 role: "Founder, Sole Engineer"
 timeframe: "2026 – ongoing"
 order: 3
-hook: "A proposition to modern user facing software"
+hook: "Designing user-controlled software where data, AI providers, and compute stay in the user's hands."
 stack:
   - Typescript
   - Tauri
@@ -13,9 +13,9 @@ stack:
 
 ## Context
 
-NC-750 is a personal software brand with a specific philosophy: most of the tools people use every day quietly assume that their data belongs somewhere else, that the AI/Data/Service provider is a fixed choice, and that "local" is a niche mode rather than the default. NC-750 proposes the opposite: bring your own key, keep your own data, and let the user pick where the compute runs, including entirely on their own machine.
+NC-750 is my personal software brand with a specific philosophy: most of the tools people use every day quietly assume that their data belongs somewhere else, that the AI provider is a fixed choice, and that "local" is a niche mode rather than the default. NC-750 proposes the opposite: bring your own key, keep your own data, and let the user pick where the compute runs, including entirely on their own machine.
 
-Mirror is the first app under the brand. It's the tool I used to build the profile behind this portfolio: you feed it your CV and any other career material, it runs an LLM-driven interview to surface what a static resume misses, and it produces a structured `persona.json` you can reuse elsewhere. When you point it at a local model, nothing leaves your machine except your input to the model. When you point it at a hosted provider, the only outbound link is directly to that provider. No NC-750 backend in the middle.
+Mirror is the first app under the brand. It is the tool I used to build the profile behind this portfolio: I feed it my CV and any other career material, it runs an LLM-driven interview to surface what a static resume misses, and it produces a structured `persona.json` I can reuse elsewhere. When I point it at a local model, nothing leaves my machine except the input to the model. When I point it at a hosted provider, the only outbound link is directly to that provider. No NC-750 backend in the middle. I design software systems where AI is integrated as a useful component rather than just a conversational interface.
 
 ## What I own
 

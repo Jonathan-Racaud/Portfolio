@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title,
-  description = "Jonathan Racaud — full-stack software engineer. Embedded, iOS SDK, applied LLMs.",
+  description = "Jonathan Racaud - SDK / Platform Software Engineer | Bridging Embedded Systems, Mobile Platforms & Backend Services | Exploring AI-powered Application.",
   pathname,
 } = Astro.props;
 
@@ -34,7 +34,7 @@ const isActive = (href: string) => {
   <body>
     <div class="site">
       <nav class="site-nav" aria-label="Primary">
-        <a href="/" class="brand">Jonathan Racaud</a>
+        <a href="/" class="brand">Home</a>
         <span class="spacer"></span>
         <a href="/#case-studies" aria-current={isActive("/case-studies") ? "page" : undefined}>Case studies</a>
         <a href="/#projects">Projects</a>
@@ -48,6 +48,8 @@ const isActive = (href: string) => {
         <div>&copy; {new Date().getFullYear()} Jonathan Racaud</div>
         <div class="footer-links">
           <a href="mailto:contact@jracaud.com">contact@jracaud.com</a>
+          <a href="https://www.linkedin.com/in/jonathan-racaud" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Jonathan-Racaud/" target="_blank" rel="noopener">GitHub</a>
         </div>
       </footer>
     </div>

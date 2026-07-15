@@ -4,7 +4,7 @@ organization: "NConcepts"
 role: "Software Engineer"
 timeframe: "2017 – 2019"
 order: 2
-hook: "Two years across three products — Arduino firmware for a smart LED panel, a Qt/QML mobile app to drive it, and a desktop GUI for a LiDAR-based room tracking system."
+hook: "Building complete products from Arduino firmware through mobile companion apps to desktop GUIs — understanding constraints at every layer."
 stack:
   - "C++"
   - "Qt / QML"

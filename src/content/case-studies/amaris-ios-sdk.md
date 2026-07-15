@@ -1,8 +1,8 @@
 ---
 title: "Bridging a legacy C++ core into a modern Swift iOS SDK for an automotive client"
 organization: "Amaris Consulting"
-role: "Experienced Software Engineer Consultant"
-timeframe: "2020 – 2026"
+role: "Experienced Consultant"
+timeframe: "2020 – 2025"
 order: 1
 hook: "Made a legacy C++ core buildable and callable from Swift, designed the C interface that connected them."
 stack:
@@ -18,9 +18,9 @@ repoNote: "Client work — no public repository."
 
 ## Context
 
-The client is a major automotive company building a cross-platform location based SDK for iOS, Android and Embedded (inside the car infotainment). Under the hood, the domain logic lives in a large C++ library that predates any of the mobile platforms consuming it. The mobile SDKs are relatively new wrappers around it.
+My client was a major automotive company building a cross-platform location based SDK for iOS, Android and Embedded (inside the car infotainment). Under the hood, the domain logic lives in a large C++ library that predates any of the mobile platforms consuming it. The mobile SDKs are relatively new wrappers around it.
 
-I joined the iOS side of the SDK team to work on developing some of the core modules of that SDK. The integration between the C++ core and the Swift modules was non existent when I joined the project.
+I joined the iOS side of the SDK team to develop core modules of that SDK. When I joined the project, the integration between the C++ core and the Swift modules was non-existent.
 
 ## What I owned
 
