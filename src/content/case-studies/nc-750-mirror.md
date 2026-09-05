@@ -1,40 +1,47 @@
 ---
-title: "NC-750 and Mirror: A personal software that respects the person using it"
+title: "NC-750 and Mirror: User-controlled software with AI"
 organization: "NC-750"
 role: "Founder, Sole Engineer"
 timeframe: "2026 – ongoing"
 order: 3
 hook: "Designing user-controlled software where data, AI providers, and compute stay in the user's hands."
 stack:
-  - Typescript
+  - TypeScript
+  - Vue.js
   - Tauri
-  - Flutter
+  - LLM APIs
 ---
 
 ## Context
 
 NC-750 is my personal software brand with a specific philosophy: most of the tools people use every day quietly assume that their data belongs somewhere else, that the AI provider is a fixed choice, and that "local" is a niche mode rather than the default. NC-750 proposes the opposite: bring your own key, keep your own data, and let the user pick where the compute runs, including entirely on their own machine.
 
-Mirror is the first app under the brand. It is the tool I used to build the profile behind this portfolio: I feed it my CV and any other career material, it runs an LLM-driven interview to surface what a static resume misses, and it produces a structured `persona.json` I can reuse elsewhere. When I point it at a local model, nothing leaves my machine except the input to the model. When I point it at a hosted provider, the only outbound link is directly to that provider. No NC-750 backend in the middle. I design software systems where AI is integrated as a useful component rather than just a conversational interface.
+Mirror is the first application built around that philosophy. It is an AI-assisted application that takes existing material such as a CV or personal notes, then conducts a structured LLM-driven interview to uncover information that static documents may miss. The result is a structured persona.json that the user owns and can reuse elsewhere.
+
+Mirror supports both local models and hosted AI providers through the same provider abstraction. With a local model, the interaction can remain entirely on the user's machine. With a hosted provider, requests go directly from the application to that provider, without an NC-750 backend in the middle. This architecture reflects the broader goal behind NC-750: integrating AI as a useful software component without requiring the user to surrender control of their data or provider choice.
 
 ## What I own
 
-- The brand's ethos and product philosophy: How should a product approach handling user data and what are the red lines not to cross.
-- Mirror's architecture: the interview loop, provider abstraction (local model or hosted provider), the persona schema, and the flow from raw inputs to the aggregated `persona.json`.
-- The single-tenant model: no accounts, minimal telemetry.
+As the sole engineer behind NC-750 and Mirror, I own:
+- The product philosophy and its constraints around user data, provider choice, and local-first operation.
+- Mirror's application architecture and implementation, including the structured interview flow, interview state and progression, provider abstraction, persona schema, and the pipeline from source material to the generated persona.json.
+- Integration with local and hosted LLM providers behind a common interface.
+- The application's web/PWA and desktop delivery through Vue, TypeScript, and Tauri.
+- The privacy model: no user accounts, no NC-750 backend between the user and their chosen AI provider, and minimal telemetry.
 
-## Challenges
+## Challenge
 
-**Designing a BYOK model** Being an LLM based app, the choice of provider and model used by the user greatly influence the end result. The challenge is on how to minimize those differences so that the user gets pragmatical and usefull results.
+**Designing for different LLM providers and models.** Mirror deliberately avoids tying the user to a specific AI provider, but different models can interpret instructions and conduct the interview differently. The challenge is therefore not only connecting to multiple providers, but designing the interview flow and prompts so that the application remains useful across models with different capabilities and behavior.
 
-**Growing NC-750:** Apart from that first app, I have the ambition of proposing a coherent ecosystem that is the demonstration of the idea behind the project. One that gives back control to the user.
+The provider abstraction separates Mirror's application logic from provider-specific APIs, while the interview itself uses structured stages and state rather than relying on a single open-ended conversation. This does not eliminate differences between models, but it reduces how much the rest of the application depends on a particular provider.
 
 ## Outcome
 
-- Mirror is running end-to-end. The `persona.json` behind this portfolio was produced by it.
-- The brand's manifesto and visual identity.
-- Next up in the NC-750 ecosystem: additional privacy-respecting personal tools, and a NixOS distro aimed at people who want a coherent computing environment without becoming their own sysadmin.
+Mirror is a shipped application available as both a PWA and a Tauri desktop application. The complete workflow runs end-to-end, from importing source material through the LLM-driven interview to generating the final persona.json. The profile used to build this portfolio was itself produced using Mirror.
+
+The project also established the initial architecture, design language, and product principles for NC-750. Future applications can build on the same emphasis on user-owned data, provider choice, and local execution.
 
 ## Links
 
+[Try Mirror](https://mirror.nc-750.com)
 [NC-750/Github](https://github.com/nc-750)
